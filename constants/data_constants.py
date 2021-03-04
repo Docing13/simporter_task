@@ -1,0 +1,9 @@
+DATA_PATH = "data.csv"
+ASIN = 'asin'
+BRAND = 'brand'
+ID = 'id'
+SOURCE = 'source'
+STARS = 'stars'
+TIMESTAMP = "timestamp"
+TIMELINE = 'timeline'
+DATE_LEN = 10

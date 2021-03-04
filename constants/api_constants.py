@@ -1,0 +1,13 @@
+EXAMPLE_URL = 'http://127.0.0.1:5000/api/timeline?startDate=2018-01-02&endDate=2019-01-05&Type=Cumulative&Grouping=monthly&stars=1'
+START_DATE = 'startDate'
+END_DATE = 'endDate'
+TYPE = 'Type'
+TYPE_CUMULATIVE = 'Cumulative'
+TYPE_USUAL = 'Usual'
+JSON_DATE = 'date'
+JSON_VALUE = 'value'
+GROUPING = 'Grouping'
+GROUPING_WEEKLY = 'weekly'
+GROUPING_MONTHLY = 'monthly'
+GROUPING_BI_WEEKLY = 'bi-weekly'
+DATE_VIEW = "startDate / endDate"
