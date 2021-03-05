@@ -1,8 +1,16 @@
 from typing import List, Dict
-from pandas import DataFrame, read_csv, to_datetime, Index, Grouper,concat
+
+from pandas import (
+    DataFrame,
+    read_csv,
+    to_datetime,
+    Index,
+    Grouper,
+    concat)
+
 import numpy as np
 
-from simporter.constants.api_constants import (
+from constants.api_constants import (
     GROUPING_MONTHLY,
     GROUPING_WEEKLY,
     JSON_DATE,
@@ -11,7 +19,10 @@ from simporter.constants.api_constants import (
     TYPE_USUAL,
     GROUPING_BI_WEEKLY)
 
-from simporter.constants.data_constants import TIMESTAMP, DATE_LEN
+from constants.data_constants import (
+    TIMESTAMP,
+    DATE_LEN,
+    SEPARATOR)
 
 
 class SimporterDataUtil:
@@ -20,7 +31,7 @@ class SimporterDataUtil:
 
     @staticmethod
     def load_data_csv(path: str,
-                      sep: str = ";") -> DataFrame:
+                      sep: str = SEPARATOR) -> DataFrame:
 
         data = read_csv(filepath_or_buffer=path, sep=sep)
 
@@ -103,18 +114,32 @@ class SimporterDataUtil:
 
     @staticmethod
     def data_events_nums_with_dates(
-            list_data: List[DataFrame]) -> List[Dict[str, int]]:
+            list_data: List[DataFrame],
+            data_type: str) -> List[Dict[str, int]]:
+
+        if data_type != TYPE_CUMULATIVE and data_type != TYPE_USUAL:
+            raise Exception(f'Unsupported data type: {data_type}')
 
         event_date_list = []
+        cumulative = 0
+
         for data in list_data:
             events_count = len(data)
+
             if events_count != 0:
+
+                if data_type == TYPE_CUMULATIVE:
+                    cumulative += events_count
+
+                elif data_type == TYPE_USUAL:
+                    cumulative = events_count
+
                 # using zero index to get first date
                 events_dates_str = data[TIMESTAMP].unique()[0].__str__()
                 events_date = events_dates_str[:DATE_LEN]
 
                 event_date_list.append({JSON_DATE: events_date,
-                                        JSON_VALUE: events_count})
+                                        JSON_VALUE: cumulative})
         return event_date_list
 
     @staticmethod

@@ -1,4 +1,4 @@
-EXAMPLE_URL = 'http://127.0.0.1:5000/api/timeline?startDate=2018-01-02&endDate=2019-01-05&Type=Cumulative&Grouping=monthly&stars=1'
+EXAMPLE_TIMELINE_URL = 'http://127.0.0.1:5000/api/timeline?startDate=2018-01-02&endDate=2019-01-05&Type=Cumulative&Grouping=monthly&stars=1'
 START_DATE = 'startDate'
 END_DATE = 'endDate'
 TYPE = 'Type'

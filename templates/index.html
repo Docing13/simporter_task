@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
     <title>Home</title>
-</head>
-<body>
-Please, go to the <a href="{{ url_for('api_info') }}">api/info</a>
-</body>
+    </head>
+    <body>
+        Please, go to the <a href="{{ url_for('api_info') }}">api/info</a>
+        to get all supported values in json.
+        <br><br>
+        Or request filtered json data:<br>
+        Example : {{ example }}
+    </body>
 </html>
